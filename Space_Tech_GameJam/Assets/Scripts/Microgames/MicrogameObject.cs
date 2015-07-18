@@ -12,7 +12,7 @@ public class MicrogameObject : MonoBehaviour {
 	float timer;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		this.microGame = (BaseMicrogame)Activator.CreateInstance(GlobalGameManager.nextGame,GlobalGameManager.globalDifficulty);
 		if (this.gameManager == null)
 			this.gameManager = gameObject.GetComponent<GameManager>();

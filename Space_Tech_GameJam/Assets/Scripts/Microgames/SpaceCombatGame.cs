@@ -14,7 +14,7 @@ public class SpaceCombatGame : BaseMicrogame {
 	public float defenceDelay;
 
 	public SpaceCombatGame(int difficulty) :base (difficulty) {
-		Debug.Log ("Space Combat Game Root");
+		Debug.Log ("Space Combat Game Setup");
 
 		int winAmt = 10 + (difficulty -1) * 5;
 		mechanic = new SpaceCombatMechanic(difficultyLevel, winAmt, 1);
@@ -22,7 +22,7 @@ public class SpaceCombatGame : BaseMicrogame {
 	}
 
 	protected override void SetupDifficulty(int difficulty){
-		Debug.Log ("Setup Space Game Difficulty");
+		Debug.Log ("Space Game Difficulty Setup");
 
 		difficultyLevel = difficulty;
 

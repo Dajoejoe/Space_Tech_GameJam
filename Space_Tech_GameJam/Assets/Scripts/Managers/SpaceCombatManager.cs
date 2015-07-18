@@ -13,9 +13,7 @@ public class SpaceCombatManager : GameManager {
 	int defendCount;
 	float pauseTimer;
 	int attacks;
-	List<KeyCode> keys;
-	List<KeyCode> lastKeys;
-	KeyCode nextKey;
+	KeyCode currentKey;
 	int correctKeyPressed;
 
 	List<Sprite> iconCache;
@@ -25,7 +23,6 @@ public class SpaceCombatManager : GameManager {
 	protected override void Start () {
 		base.Start();
 		microGame = (SpaceCombatGame)baseGame;
-
 		microGame.mechanic.winCondition.metDelegate += new ConditionMet(ConditionMet);
 		microGame.mechanic.loseCondition.metDelegate += new ConditionMet(ConditionMet);
 		microGame.mode = CombatMode.Defend;
@@ -41,15 +38,18 @@ public class SpaceCombatManager : GameManager {
 		this.iconCache = new List<Sprite>();
 		this.numberCache = new List<Sprite>();
 
+		string path = "";
 		foreach (KeyCode key in this.keys) {
-			string path = "Sprites/UI/Icon_"+key.ToString();
+			path = "Sprites/UI/Icon_"+key.ToString();
 			Sprite newSprite = Resources.Load<Sprite>(path);
 			this.iconCache.Add(newSprite);
 		}
-		for (int i= 0; i< 11; i++) {
-			string path = "Sprites/UI/Text_w"+i.ToString();
-			Sprite newSprite = Resources.Load<Sprite>(path);
-			this.numberCache.Add(newSprite);
+
+		path = "Sprites/UI/Text_NumbersSheet";
+		Sprite[] newSprites = Resources.LoadAll<Sprite>(path);
+		foreach (Sprite s in newSprites) {
+			this.numberCache.Add(s);
+			Debug.Log (s.name);
 		}
 	}
 	
@@ -137,7 +137,7 @@ public class SpaceCombatManager : GameManager {
 			}
 		}
 		else if (microGame.mode == CombatMode.Defend && correctKeyPressed == 0) {
-			if (key == nextKey) {
+			if (key == currentKey) {
 				Debug.Log ("Hit correct key!");
 				correctKeyPressed = 1;
 			}
@@ -204,8 +204,8 @@ public class SpaceCombatManager : GameManager {
 
 	void SelectKey() {
 		int index = Random.Range(0,keys.Count-1);
-		nextKey = keys[index];
-		lastKeys.Add(nextKey);
+		currentKey = keys[index];
+		lastKeys.Add(currentKey);
 
 		this.keyImage.sprite = this.iconCache[index];
 

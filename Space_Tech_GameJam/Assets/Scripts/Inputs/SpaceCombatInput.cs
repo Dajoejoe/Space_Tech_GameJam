@@ -7,7 +7,7 @@ public class SpaceCombatInput : BaseInput {
 	public override void ConfigureForDifficulty (int difficulty)
 	{
 		base.ConfigureForDifficulty (difficulty);
-		Debug.Log ("Configure Space Game Input");
+		Debug.Log ("Space Game Input Setup");
 
 		List<KeyCode> keys = new List<KeyCode>();
 		switch (difficulty)

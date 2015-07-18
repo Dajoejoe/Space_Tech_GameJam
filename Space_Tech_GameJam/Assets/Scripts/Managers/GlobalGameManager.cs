@@ -13,7 +13,14 @@ public class GlobalGameManager : MonoBehaviour {
 	public static int health;
 	public static int globalDifficulty;
 
+	static bool exists;
+
 	void Awake () {
+
+		if (exists) {
+			Destroy(gameObject);
+		}
+		exists = true;
 		DontDestroyOnLoad(this);
 		AddGameTypes();
 		Init ();
@@ -36,6 +43,7 @@ public class GlobalGameManager : MonoBehaviour {
 
 	void AddGameTypes () {
 		gameTypes = new List<Type>();
+		gameTypes.Add(typeof(CryoGame));
 		gameTypes.Add(typeof(SpaceCombatGame));
 	}
 }

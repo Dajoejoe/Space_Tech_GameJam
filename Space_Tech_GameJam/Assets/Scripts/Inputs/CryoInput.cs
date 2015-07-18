@@ -7,7 +7,7 @@ public class CryoInput : BaseInput {
 	public override void ConfigureForDifficulty (int difficulty)
 	{
 		base.ConfigureForDifficulty (difficulty);
-		Debug.Log ("Configure Cryo Game Input");
+		Debug.Log ("Cryo Game Input Setup");
 		
 		List<KeyCode> keys = new List<KeyCode>();
 

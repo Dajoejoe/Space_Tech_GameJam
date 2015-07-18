@@ -15,7 +15,6 @@ public abstract class BaseMechanic  {
 	protected float speedModifier = 1;
 
 	public BaseMechanic(float winAmt, float loseAmt) {
-		Debug.Log ("Base Mechanic");
 		SetupConditions(winAmt,loseAmt);
 	}
 

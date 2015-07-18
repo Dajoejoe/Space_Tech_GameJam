@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour {
 
@@ -10,6 +11,8 @@ public class GameManager : MonoBehaviour {
 	public BaseMicrogame baseGame;
 	protected GameState gameState;
 	protected float timer;
+	protected List<KeyCode> keys;
+	protected List<KeyCode> lastKeys;
 
 	// Use this for initialization
 	protected virtual void Start () {

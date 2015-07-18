@@ -12,7 +12,6 @@ public abstract class BaseMicrogame  {
 	protected int difficultyLevel;
 
 	public BaseMicrogame(int difficulty) {
-		Debug.Log ("Base Microgame");
 		SetupDifficulty(difficulty);
 	}
 
