@@ -32,7 +32,7 @@ public class GlobalGameManager : MonoBehaviour {
 
 	// Handle the initial values
 	void Init () {
-		nextGame = gameTypes[0];
+		nextGame = gameTypes[1];
 		globalDifficulty = 1;
 	}
 
