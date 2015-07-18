@@ -48,11 +48,15 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Condition\Condition.cs" />
      <Compile Include="Assets\Scripts\Inputs\BaseInput.cs" />
+     <Compile Include="Assets\Scripts\Inputs\SpaceCombatInput.cs" />
+     <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GlobalGameManager.cs" />
+     <Compile Include="Assets\Scripts\Managers\SpaceCombatManager.cs" />
      <Compile Include="Assets\Scripts\Mechanics\BaseMechanic.cs" />
+     <Compile Include="Assets\Scripts\Mechanics\SpaceCombatMechanic.cs" />
      <Compile Include="Assets\Scripts\Microgames\BaseMicrogame.cs" />
      <Compile Include="Assets\Scripts\Microgames\MicrogameObject.cs" />
-     <Compile Include="Assets\Scripts\Microgames\SpaceCombat.cs" />
+     <Compile Include="Assets\Scripts\Microgames\SpaceCombatGame.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity512/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

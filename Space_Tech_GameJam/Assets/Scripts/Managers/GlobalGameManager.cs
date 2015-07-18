@@ -10,15 +10,24 @@ public class GlobalGameManager : MonoBehaviour {
 	public static Type nextGame;
 	public static Type previousGame;
 
+	public static int globalDifficulty;
+
 	void Awake () {
 		DontDestroyOnLoad(this);
 		AddGameTypes();
-		nextGame = gameTypes[0];
+		Init ();
 	}
+
 	// Use this for initialization
 	void Start () {
 	}
-	
+
+	// Handle the initial values
+	void Init () {
+		nextGame = gameTypes[0];
+		globalDifficulty = 1;
+	}
+
 	// Update is called once per frame
 	void Update () {
 	
@@ -26,6 +35,6 @@ public class GlobalGameManager : MonoBehaviour {
 
 	void AddGameTypes () {
 		gameTypes = new List<Type>();
-		gameTypes.Add(typeof(SpaceCombat));
+		gameTypes.Add(typeof(SpaceCombatGame));
 	}
 }

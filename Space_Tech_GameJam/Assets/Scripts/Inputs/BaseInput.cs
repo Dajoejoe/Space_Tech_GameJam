@@ -2,12 +2,18 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class BaseInput : MonoBehaviour {
+public delegate void ProcessKey(KeyCode key);
 
-	List<KeyCode> accepteKeys;
+public class BaseInput {
 
-	void Update () {
-		foreach (KeyCode key in accepteKeys) {
+	protected List<KeyCode> acceptedKeys;
+	protected ProcessKey processDelegate;
+
+	public List<KeyCode> GetKeys { get {return this.acceptedKeys;}}
+	public ProcessKey ProcessDelegate { get {return processDelegate;} set { processDelegate = value;}}
+
+	public void Update () {
+		foreach (KeyCode key in acceptedKeys) {
 			if (Input.GetKeyDown(key)) {
 				HandleKeyDown(key);
 			}
@@ -20,7 +26,9 @@ public class BaseInput : MonoBehaviour {
 		}
 	}
 
-	protected virtual void HandleKeyDown(KeyCode key){}
-	protected virtual void HandleKeyUp(KeyCode key){}
-	protected virtual void HandleKey(KeyCode key){}
+	public virtual void ConfigureForDifficulty(int difficulty){}
+
+	protected virtual void HandleKeyDown(KeyCode key){Debug.Log (processDelegate); if (processDelegate != null) processDelegate(key);}
+	protected virtual void HandleKeyUp(KeyCode key){if (processDelegate != null) processDelegate(key);}
+	protected virtual void HandleKey(KeyCode key){if (processDelegate != null) processDelegate(key);}
 }

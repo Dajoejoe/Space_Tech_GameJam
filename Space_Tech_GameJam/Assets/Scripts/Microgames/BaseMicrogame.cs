@@ -1,16 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BaseMicrogame  {
+public abstract class BaseMicrogame  {
 
-	float time;
-	BaseMechanic mechanic;
-	int result;
-	int difficultyLevel;
+	public float time;
+	public string gameName;
+	public  BaseMechanic mechanic;
+	public int result;
 
-	public BaseMicrogame() {
-		SetupDifficulty();
+	protected MicrogameObject gameObject;
+	protected int difficultyLevel;
+
+	public BaseMicrogame(int difficulty) {
+		Debug.Log ("Base Microgame");
+		SetupDifficulty(difficulty);
 	}
 
-	protected virtual void SetupDifficulty(){}
+	public virtual void ConfigureGameObject(MicrogameObject sceneObject, GameManager gameManager){ 
+		this.gameObject = sceneObject;
+		this.mechanic.GetInput.ProcessDelegate += new ProcessKey(gameManager.ProcessInput);
+	}
+
+	protected abstract void SetupDifficulty(int difficulty);
 }

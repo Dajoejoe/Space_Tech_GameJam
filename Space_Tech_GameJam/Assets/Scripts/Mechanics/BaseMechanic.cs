@@ -1,28 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class BaseMechanic  {
+public abstract class BaseMechanic  {
 
-	BaseInput input;
-	Condition winCondition;
-	Condition loseCondition;
+	protected BaseInput input;
+
+	public Condition winCondition;
+	public Condition loseCondition;
+
+	public BaseInput GetInput{get{ return input;}}
 
 	float speedModifier = 1;
 
 	public BaseMechanic() {
-		winCondition.metDelegate += new ConditionMet(ConditionMet);
-		loseCondition.metDelegate = new ConditionMet(ConditionMet);
+		Debug.Log ("Base Mechanic");
+		SetupConditions();
 	}
 
+	protected abstract void SetupConditions();
 
-	protected void ConditionMet(Condition condition) {
-		if (condition == this.winCondition) {
-			Debug.Log ("Win condition Met");
-		}
-		else if (condition == this.loseCondition) {
-			Debug.Log ("Lost condition Met");
-		}
-
-	}
-
+	public bool isWinCondition(Condition condition) { return condition.Equals(winCondition); }
+	public bool isLoseCondition(Condition condition) { return condition.Equals(loseCondition); }
 }
