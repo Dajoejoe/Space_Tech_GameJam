@@ -16,7 +16,8 @@ public class SpaceCombatGame : BaseMicrogame {
 	public SpaceCombatGame(int difficulty) :base (difficulty) {
 		Debug.Log ("Space Combat Game Root");
 
-		mechanic = new SpaceCombatMechanic(difficultyLevel);
+		int winAmt = 10 + (difficulty -1) * 5;
+		mechanic = new SpaceCombatMechanic(difficultyLevel, winAmt, 1);
 		gameName = "Space Combat";
 	}
 

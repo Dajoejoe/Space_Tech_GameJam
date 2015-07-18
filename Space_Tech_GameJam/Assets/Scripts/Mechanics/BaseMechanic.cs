@@ -10,14 +10,16 @@ public abstract class BaseMechanic  {
 
 	public BaseInput GetInput{get{ return input;}}
 
-	float speedModifier = 1;
+	protected float winAmt;
+	protected float loseAmt;
+	protected float speedModifier = 1;
 
-	public BaseMechanic() {
+	public BaseMechanic(float winAmt, float loseAmt) {
 		Debug.Log ("Base Mechanic");
-		SetupConditions();
+		SetupConditions(winAmt,loseAmt);
 	}
 
-	protected abstract void SetupConditions();
+	protected abstract void SetupConditions(float winAmt, float loseAmt);
 
 	public bool isWinCondition(Condition condition) { return condition.Equals(winCondition); }
 	public bool isLoseCondition(Condition condition) { return condition.Equals(loseCondition); }

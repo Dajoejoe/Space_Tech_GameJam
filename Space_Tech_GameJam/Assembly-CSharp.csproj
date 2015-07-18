@@ -48,13 +48,17 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Condition\Condition.cs" />
      <Compile Include="Assets\Scripts\Inputs\BaseInput.cs" />
+     <Compile Include="Assets\Scripts\Inputs\CryoInput.cs" />
      <Compile Include="Assets\Scripts\Inputs\SpaceCombatInput.cs" />
+     <Compile Include="Assets\Scripts\Managers\CryoManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
      <Compile Include="Assets\Scripts\Managers\GlobalGameManager.cs" />
      <Compile Include="Assets\Scripts\Managers\SpaceCombatManager.cs" />
      <Compile Include="Assets\Scripts\Mechanics\BaseMechanic.cs" />
+     <Compile Include="Assets\Scripts\Mechanics\CryoMechanic.cs" />
      <Compile Include="Assets\Scripts\Mechanics\SpaceCombatMechanic.cs" />
      <Compile Include="Assets\Scripts\Microgames\BaseMicrogame.cs" />
+     <Compile Include="Assets\Scripts\Microgames\CryoGame.cs" />
      <Compile Include="Assets\Scripts\Microgames\MicrogameObject.cs" />
      <Compile Include="Assets\Scripts\Microgames\SpaceCombatGame.cs" />
  <Reference Include="UnityEngine.UI">

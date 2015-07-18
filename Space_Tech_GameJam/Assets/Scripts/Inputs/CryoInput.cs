@@ -2,34 +2,28 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SpaceCombatInput : BaseInput {
-	
+public class CryoInput : BaseInput {
+
 	public override void ConfigureForDifficulty (int difficulty)
 	{
 		base.ConfigureForDifficulty (difficulty);
-		Debug.Log ("Configure Space Game Input");
-
+		Debug.Log ("Configure Cryo Game Input");
+		
 		List<KeyCode> keys = new List<KeyCode>();
-		switch (difficulty)
-		{
-		case 1:
-			keys.Add(KeyCode.A);
-			keys.Add(KeyCode.W);
-			keys.Add(KeyCode.D);
-			break;
-		case 2:
-			keys.Add(KeyCode.A);
-			keys.Add(KeyCode.W);
-			keys.Add(KeyCode.D);
-			keys.Add(KeyCode.S);
-			break;
-		default:
-			keys.Add(KeyCode.A);
-			keys.Add(KeyCode.W);
-			keys.Add(KeyCode.D);
-			break;
-		}
-		keys.Add(KeyCode.Space);
+
+		keys.Add(KeyCode.Q);
+		keys.Add(KeyCode.W);
+		keys.Add(KeyCode.E);
+		keys.Add(KeyCode.R);
+		keys.Add(KeyCode.A);
+		keys.Add(KeyCode.S);
+		keys.Add(KeyCode.D);
+		keys.Add(KeyCode.F);
+		keys.Add(KeyCode.Z);
+		keys.Add(KeyCode.X);
+		keys.Add(KeyCode.C);
+		keys.Add(KeyCode.V);
+
 		this.acceptedKeys = keys;
 	}
 	

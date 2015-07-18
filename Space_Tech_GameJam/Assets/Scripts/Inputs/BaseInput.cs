@@ -28,7 +28,7 @@ public class BaseInput {
 
 	public virtual void ConfigureForDifficulty(int difficulty){}
 
-	protected virtual void HandleKeyDown(KeyCode key){Debug.Log (processDelegate); if (processDelegate != null) processDelegate(key);}
+	protected virtual void HandleKeyDown(KeyCode key){ if (processDelegate != null) processDelegate(key);}
 	protected virtual void HandleKeyUp(KeyCode key){if (processDelegate != null) processDelegate(key);}
 	protected virtual void HandleKey(KeyCode key){if (processDelegate != null) processDelegate(key);}
 }

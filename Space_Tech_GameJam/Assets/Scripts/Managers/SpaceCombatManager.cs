@@ -7,7 +7,7 @@ public class SpaceCombatManager : GameManager {
 
 	public SpaceCombatGame microGame;
 	public Image keyImage;
-	private Text keyText;
+	private Image countImage;
 	public Image spaceImage;
 
 	int defendCount;
@@ -17,6 +17,9 @@ public class SpaceCombatManager : GameManager {
 	List<KeyCode> lastKeys;
 	KeyCode nextKey;
 	int correctKeyPressed;
+
+	List<Sprite> iconCache;
+	List<Sprite> numberCache;
 
 	// Use this for initialization
 	protected override void Start () {
@@ -29,13 +32,25 @@ public class SpaceCombatManager : GameManager {
 		timer = 2;
 		defendCount = 0;
 
-		if (this.keyImage)
-			keyText = (Text)keyImage.transform.GetChild(0).GetComponent<Text>();
 		this.spaceImage.gameObject.SetActive(false);
 		this.keyImage.gameObject.SetActive(false);
 
+		this.countImage = this.spaceImage.transform.GetChild(0).GetComponent<Image>();
 		this.keys = microGame.mechanic.GetInput.GetKeys;
 		this.lastKeys = new List<KeyCode>();
+		this.iconCache = new List<Sprite>();
+		this.numberCache = new List<Sprite>();
+
+		foreach (KeyCode key in this.keys) {
+			string path = "Sprites/UI/Icon_"+key.ToString();
+			Sprite newSprite = Resources.Load<Sprite>(path);
+			this.iconCache.Add(newSprite);
+		}
+		for (int i= 0; i< 11; i++) {
+			string path = "Sprites/UI/Text_w"+i.ToString();
+			Sprite newSprite = Resources.Load<Sprite>(path);
+			this.numberCache.Add(newSprite);
+		}
 	}
 	
 	// Update is called once per frame
@@ -114,6 +129,11 @@ public class SpaceCombatManager : GameManager {
 		if (microGame.mode == CombatMode.Attack) {
 			if (key == KeyCode.Space) {
 				attacks++;
+				UpdateDisplay();
+				if (attacks == 10) {
+					baseGame.mechanic.winCondition.AddAmt(attacks);
+					SwitchModes();
+				}
 			}
 		}
 		else if (microGame.mode == CombatMode.Defend && correctKeyPressed == 0) {
@@ -136,11 +156,11 @@ public class SpaceCombatManager : GameManager {
 		if (microGame.mode == CombatMode.Attack) {
 			this.spaceImage.gameObject.SetActive(true);
 			this.keyImage.gameObject.SetActive(false);
+			this.countImage.sprite = numberCache[attacks];
 		}
 		else {
 			this.spaceImage.gameObject.SetActive(false);
 			this.keyImage.gameObject.SetActive(true);
-			this.keyText.text = nextKey.ToString();
 		}
 	}
 	
@@ -183,8 +203,11 @@ public class SpaceCombatManager : GameManager {
 	}
 
 	void SelectKey() {
-		nextKey = keys[Random.Range(0,keys.Count-1)];
+		int index = Random.Range(0,keys.Count-1);
+		nextKey = keys[index];
 		lastKeys.Add(nextKey);
+
+		this.keyImage.sprite = this.iconCache[index];
 
 		correctKeyPressed = 0;
 		timer = microGame.defenceDelay;
