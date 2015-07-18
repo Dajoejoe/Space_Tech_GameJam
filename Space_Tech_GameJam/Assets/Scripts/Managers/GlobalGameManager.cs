@@ -10,6 +10,7 @@ public class GlobalGameManager : MonoBehaviour {
 	public static Type nextGame;
 	public static Type previousGame;
 
+	public static int health;
 	public static int globalDifficulty;
 
 	void Awake () {

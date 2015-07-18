@@ -14,7 +14,7 @@ public class SpaceCombatMechanic : BaseMechanic {
 	protected override void SetupConditions ()
 	{
 		Debug.Log ("Space Game Conditions Setup");
-		winCondition = new Condition(Condition.ConditionType.Time, 10);
+		winCondition = new Condition(Condition.ConditionType.LiveLoss, 10);
 		loseCondition = new Condition(Condition.ConditionType.LiveLoss,1);
 	}
 

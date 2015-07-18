@@ -30,6 +30,11 @@ public class SpaceCombatInput : BaseInput {
 			keys.Add(KeyCode.H);
 			break;
 		}
+		keys.Add(KeyCode.Space);
 		this.acceptedKeys = keys;
 	}
+	
+	protected override void HandleKeyDown(KeyCode key){ if (processDelegate != null) processDelegate(key);}
+	protected override void HandleKeyUp(KeyCode key){}
+	protected override void HandleKey(KeyCode key){}
 }

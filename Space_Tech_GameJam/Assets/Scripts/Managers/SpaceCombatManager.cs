@@ -60,6 +60,11 @@ public class SpaceCombatManager : GameManager {
 		base.Play ();
 
 		if (pauseTimer > 0) {
+			pauseTimer -= Time.deltaTime;
+			if (pauseTimer <= 0)
+			{			
+				UpdateDisplay();
+			}
 			return;
 		}
 
@@ -68,10 +73,18 @@ public class SpaceCombatManager : GameManager {
 
 			if (microGame.mode == CombatMode.Attack) {
 				baseGame.mechanic.winCondition.AddAmt(attacks);
+				SwitchModes();
 			}
 			else if (microGame.mode == CombatMode.Defend) {
 				if (correctKeyPressed == 1) {
-					
+					Debug.Log ("select key");
+					defendCount ++;
+					if (defendCount == microGame.defensePresses) {
+						SwitchModes();
+					}
+					else {
+						SelectKey();
+					}
 				}
 				else {
 					baseGame.mechanic.loseCondition.AddAmt(1f);
@@ -94,7 +107,7 @@ public class SpaceCombatManager : GameManager {
 	{
 		base.ProcessInput (key);
 
-		if (gameState != GameState.Play) {
+		if (gameState != GameState.Play || pauseTimer > 0) {
 			return;
 		}
 
@@ -112,6 +125,7 @@ public class SpaceCombatManager : GameManager {
 				Debug.Log ("Hit wrong key");
 				correctKeyPressed = -1;
 			}
+			this.keyImage.gameObject.SetActive(false);
 		}
 	}
 
@@ -134,9 +148,12 @@ public class SpaceCombatManager : GameManager {
 	{
 		if (microGame.mechanic.isWinCondition(condition)) {
 			Debug.Log ("Win Condition Met");
+			gameState = GameState.Win;
 		}
 		else if (microGame.mechanic.isLoseCondition(condition)) {
 			Debug.Log ("Lose Condition Met");
+			gameState = GameState.Lose;
+			GlobalGameManager.health += baseGame.result;
 		}
 		else {
 			throw new UnityException("Error with game condition: Condition met is neither the win or the lose condition");
@@ -151,17 +168,22 @@ public class SpaceCombatManager : GameManager {
 		if (microGame.mode == CombatMode.Attack) {
 			microGame.mode = CombatMode.Defend;
 			timer = microGame.defenceDelay;
-			pauseTimer = 0.5f;
+			defendCount = 0;
+			lastKeys = new List<KeyCode>();
+			SelectKey();
+			this.keyImage.gameObject.SetActive(false);
 		}
 		else {
 			microGame.mode = CombatMode.Attack;
 			timer = microGame.attackTime;
 			attacks = 0;
 		}
+		pauseTimer = 0.5f;
+
 	}
 
 	void SelectKey() {
-		nextKey = keys[Random.Range(0,keys.Count)];
+		nextKey = keys[Random.Range(0,keys.Count-1)];
 		lastKeys.Add(nextKey);
 
 		correctKeyPressed = 0;

@@ -25,7 +25,7 @@ public class Condition {
 
 	public void AddAmt(float amt) {
 		this.amt += amt;
-
+		Debug.Log (this.amt + " " + this.limit);
 		if (this.amt >= this.limit) {
 			if (this.metDelegate != null)
 				this.metDelegate(this);
