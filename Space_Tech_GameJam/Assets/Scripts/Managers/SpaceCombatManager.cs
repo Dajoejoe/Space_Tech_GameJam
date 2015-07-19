@@ -9,6 +9,8 @@ public class SpaceCombatManager : GameManager {
 	public Image keyImage;
 	private Image countImage;
 	public Image spaceImage;
+	public GameObject goo;
+	public GameObject shield;
 
 	int defendCount;
 	float pauseTimer;
@@ -137,6 +139,7 @@ public class SpaceCombatManager : GameManager {
 		if (microGame.mode == CombatMode.Attack) {
 			if (key == KeyCode.Space) {
 				attacks++;
+				GameObject.Instantiate(goo);
 				UpdateDisplay();
 				if (attacks == 10) {
 					baseGame.mechanic.winCondition.AddAmt(attacks);
@@ -148,6 +151,7 @@ public class SpaceCombatManager : GameManager {
 			if (key == currentKey) {
 				Debug.Log ("Hit correct key!");
 				correctKeyPressed = 1;
+				shield.GetComponent<Animator>().SetTrigger("Trigger");
 			}
 			else {
 				Debug.Log ("Hit wrong key");

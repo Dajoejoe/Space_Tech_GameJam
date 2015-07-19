@@ -57,8 +57,8 @@ public class GlobalGameManager : MonoBehaviour {
 
 	void AddGameTypes () {
 		gameTypes = new List<Type>();
+		gameTypes.Add(typeof(SpaceCombatGame));
 		gameTypes.Add(typeof(SpaceTravelGame));
 		gameTypes.Add(typeof(CryoGame));
-		gameTypes.Add(typeof(SpaceCombatGame));
 	}
 }
