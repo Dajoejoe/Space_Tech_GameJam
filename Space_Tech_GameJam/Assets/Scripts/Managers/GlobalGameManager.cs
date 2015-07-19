@@ -68,7 +68,7 @@ public class GlobalGameManager : MonoBehaviour {
 	// Auto load the next level
 	void OnLevelWasLoaded(int level) {
 
-		if (level != 0 || health <= 0 || loaded)
+		if (level > 1  || health <= 0 || loaded)
 		{		
 			healthBar.SetActive(true);
 			transform.parent = Camera.main.transform;

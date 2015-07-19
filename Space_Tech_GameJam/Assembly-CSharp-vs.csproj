@@ -50,6 +50,7 @@
      <Compile Include="Assets\Scripts\Helper\CallLevelLoad.cs" />
      <Compile Include="Assets\Scripts\Helper\FadeInOut.cs" />
      <Compile Include="Assets\Scripts\Helper\RotateAround.cs" />
+     <Compile Include="Assets\Scripts\Helper\SplashSceen.cs" />
      <Compile Include="Assets\Scripts\Inputs\BaseInput.cs" />
      <Compile Include="Assets\Scripts\Inputs\CryoInput.cs" />
      <Compile Include="Assets\Scripts\Inputs\SpaceCombatInput.cs" />
