@@ -30,18 +30,22 @@ public class SpaceCombatGame : BaseMicrogame {
 		switch (difficultyLevel)
 		{
 		case 1:
-			attackTime = 3;
+			attackTime = 2f;
 			defensePresses = 5;
 			defenceDelay = 1.5f;
 			break;
 		case 2:
-			attackTime = 2.5f;
+			attackTime = 1.75f;
 			defensePresses = 5;
 			defenceDelay = 1.25f;
 			break;
+		case 3:
+			attackTime = 1.5f;
+			defensePresses = 6;
+			defenceDelay = 1f;
+			break;
 		default:
 			break;
-		}
 	}
 
 

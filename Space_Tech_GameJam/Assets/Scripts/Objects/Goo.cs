@@ -16,4 +16,8 @@ public class Goo : MonoBehaviour {
 	public void DestroyGameObject() {
 		Destroy (gameObject);
 	}
+
+	public void ChangeLayer (int layer) {
+		GetComponent<SpriteRenderer>().sortingOrder = layer;
+	}
 }

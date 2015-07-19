@@ -10,6 +10,7 @@ public class SpaceCombatManager : GameManager {
 	private Image countImage;
 	public Image spaceImage;
 	public GameObject goo;
+	public GameObject enemyGoo;
 	public GameObject shield;
 	public GameObject healthBar;
 
@@ -96,8 +97,10 @@ public class SpaceCombatManager : GameManager {
 				SwitchModes();
 			}
 			else if (microGame.mode == CombatMode.Defend) {
+				GameObject goo = (GameObject)GameObject.Instantiate(enemyGoo);
 				if (correctKeyPressed == 1) {
-					Debug.Log ("select key");
+					goo.GetComponent<Animator>().SetTrigger("Fire");
+					shield.GetComponent<Animator>().SetTrigger("Trigger");
 					defendCount ++;
 					if (defendCount == microGame.defensePresses) {
 						SwitchModes();
@@ -107,6 +110,7 @@ public class SpaceCombatManager : GameManager {
 					}
 				}
 				else {
+					goo.GetComponent<Animator>().SetTrigger("Hit");
 					baseGame.mechanic.loseCondition.AddAmt(1f);
 				}
 			}
@@ -156,7 +160,6 @@ public class SpaceCombatManager : GameManager {
 			if (key == currentKey) {
 				Debug.Log ("Hit correct key!");
 				correctKeyPressed = 1;
-				shield.GetComponent<Animator>().SetTrigger("Trigger");
 			}
 			else {
 				Debug.Log ("Hit wrong key");
