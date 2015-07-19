@@ -71,7 +71,7 @@ public class CryoManager : GameManager {
 		base.Win ();
 		timer -= Time.deltaTime;
 		if (timer <= 0) {
-			Application.LoadLevel("Scene_Main");
+			GlobalGameManager.Advance();
 		}
 	}
 	
@@ -80,7 +80,7 @@ public class CryoManager : GameManager {
 		base.Lose ();
 		timer -= Time.deltaTime;
 		if (timer <= 0) {
-			Application.LoadLevel("Scene_Main");
+			GlobalGameManager.Advance();
 		}
 	}
 	

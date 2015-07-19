@@ -1,19 +1,21 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Objects/CryoContainer.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Managers/GlobalGameManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Managers/GlobalGameManager.cs" Line="59" Column="35" />
+      <File FileName="Assets/Scripts/Managers/GlobalGameManager.cs" Line="57" Column="35" />
       <File FileName="Assets/Scripts/Managers/GameManager.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Microgames/MicrogameObject.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Managers/SpaceCombatManager.cs" Line="58" Column="1" />
-      <File FileName="Assets/Scripts/Microgames/SpaceCombatGame.cs" Line="50" Column="3" />
-      <File FileName="Assets/Scripts/Condition/Condition.cs" Line="28" Column="1" />
-      <File FileName="Assets/Scripts/Mechanics/SpaceCombatMechanic.cs" Line="7" Column="20" />
-      <File FileName="Assets/Scripts/Objects/Goo.cs" Line="21" Column="55" />
-      <File FileName="Assets/Scripts/Microgames/SpaceTravelGame.cs" Line="7" Column="1" />
-      <File FileName="Assets/Scripts/Managers/CryoManager.cs" Line="31" Column="1" />
-      <File FileName="Assets/Scripts/Objects/CryoContainer.cs" Line="67" Column="1" />
-      <File FileName="Assets/Scripts/Inputs/CryoInput.cs" Line="23" Column="1" />
+      <File FileName="Assets/Scripts/Managers/SpaceCombatManager.cs" Line="199" Column="4" />
+      <File FileName="Assets/Scripts/Microgames/SpaceCombatGame.cs" Line="17" Column="41" />
+      <File FileName="Assets/Scripts/Condition/Condition.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Mechanics/SpaceCombatMechanic.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Objects/Goo.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Microgames/SpaceTravelGame.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Managers/CryoManager.cs" Line="115" Column="37" />
+      <File FileName="Assets/Scripts/Objects/CryoContainer.cs" Line="27" Column="1" />
+      <File FileName="Assets/Scripts/Inputs/CryoInput.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Microgames/CryoGame.cs" Line="9" Column="3" />
+      <File FileName="Assets/Scripts/Microgames/BaseMicrogame.cs" Line="4" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

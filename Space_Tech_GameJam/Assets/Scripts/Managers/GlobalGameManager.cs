@@ -21,6 +21,8 @@ public class GlobalGameManager : MonoBehaviour {
 	static bool exists;
 	static bool displayNeedsUpdate;
 	static bool replay;
+	static bool advance;
+	static bool loaded;
 
 	void Awake () {
 
@@ -61,9 +63,10 @@ public class GlobalGameManager : MonoBehaviour {
 
 	// Auto load the next level
 	void OnLevelWasLoaded(int level) {
-		if (level != 0)
+		if (level != 0 || health <= 0 || loaded)
 			return;
 
+		loaded = true;
 		if (!replay)
 			SetLevel();
 		string scene = "Scene_" + nextGame.ToString();
@@ -72,6 +75,7 @@ public class GlobalGameManager : MonoBehaviour {
 
 	// Handle setting the levels
 	void SetLevel () {
+		Debug.Log ("level " + level);
 		nextGame = gameTypes[level];
 		level = (level + 1) % gameTypes.Count;
 	}
@@ -80,6 +84,27 @@ public class GlobalGameManager : MonoBehaviour {
 	void Update () {
 		if (displayNeedsUpdate) {
 			UpdateDisplay();
+		}
+
+		if (health <= 0) {
+			if (Input.GetKeyDown(KeyCode.Space)) {
+				Reset ();
+				Application.LoadLevel("Scene_Main");
+			}
+			else if (Input.GetKeyDown(KeyCode.Escape)) {
+				Application.Quit();
+			}
+		}
+
+		if (advance) {
+			advance = false;
+			if (health <= 0) {
+				SetGameOver();
+			}
+			else {
+				loaded = false;
+				Application.LoadLevel("Scene_Main");
+			}
 		}
 	}
 
@@ -94,19 +119,24 @@ public class GlobalGameManager : MonoBehaviour {
 		displayNeedsUpdate = true;
 		health += result;
 		replay = !won;
+
 		Debug.Log ("Replay: " + replay + " " + result + " " + health);
+	}
+
+	public static void Advance() {
+		advance = true;
 	}
 
 	void UpdateDisplay() {
 		displayNeedsUpdate = false;
 
-		if (health <= 0) {
-			Debug.Log ("Set Game over");
-			Reset ();
-		}
-
 		Transform bar = healthBar.transform.FindChild(health.ToString());
 		if (bar)
 			bar.gameObject.SetActive(false);
+	}
+
+	void SetGameOver() {
+		gameOverScreen.SetActive(true);
+		gameOverScreen.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/UI/Text_NumbersSheet")[levelsCompleted];
 	}
 }

@@ -65,9 +65,6 @@ public class CryoContainer : MonoBehaviour {
 			state = 1;
 		}
 
-		if (_transform.localPosition.y + amtToFill > startingSize) {
-			cryoManager.ContainerDrained(this);
-		}
 	}
 
 	public void Fill() {
