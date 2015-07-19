@@ -6,7 +6,7 @@ public class SpaceTravelGame : BaseMicrogame {
 	public SpaceTravelGame(int difficulty) :base (difficulty) {
 		Debug.Log ("Space Travel Game Setup");
 		
-		int winAmt = 10 + (difficulty -1) * 5;
+		int winAmt = 30 + (difficulty -1) * 5;
 		mechanic = new SpaceCombatMechanic(difficultyLevel, winAmt, 1);
 		gameName = "Space Travel";
 	}
