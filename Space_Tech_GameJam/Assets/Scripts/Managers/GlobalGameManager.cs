@@ -35,7 +35,6 @@ public class GlobalGameManager : MonoBehaviour {
 	}
 
 	void OnLevelWasLoaded(int level) {
-		Debug.Log ("loaded");
 		if (level != 0)
 			return;
 

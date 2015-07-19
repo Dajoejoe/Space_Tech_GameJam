@@ -40,7 +40,7 @@ public class CryoContainer : MonoBehaviour {
 
 		Vector3 scale = _transform.localScale;
 		scale.y -= drainSpeed * Time.deltaTime;
-		scale.y += Mathf.Min (amtToFill, fillRate);
+		scale.y += Mathf.Min (amtToFill, fillRate) * Time.deltaTime;
 		amtToFill = Mathf.Clamp(amtToFill-fillRate,0,amtToFill);
 		if (scale.y <= 0) {
 			cryoManager.ContainerDrained(this);

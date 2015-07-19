@@ -10,8 +10,11 @@ public class SpaceCombatManager : GameManager {
 	private Image countImage;
 	public Image spaceImage;
 	public GameObject goo;
+	public GameObject enemyGoo;
 	public GameObject shield;
+	public GameObject healthBar;
 
+	int health;
 	int defendCount;
 	float pauseTimer;
 	int attacks;
@@ -30,6 +33,7 @@ public class SpaceCombatManager : GameManager {
 		microGame.mode = CombatMode.Defend;
 		timer = 2;
 		defendCount = 0;
+		health = 15;
 
 		this.spaceImage.gameObject.SetActive(false);
 		this.keyImage.gameObject.SetActive(false);
@@ -93,8 +97,10 @@ public class SpaceCombatManager : GameManager {
 				SwitchModes();
 			}
 			else if (microGame.mode == CombatMode.Defend) {
+				GameObject goo = (GameObject)GameObject.Instantiate(enemyGoo);
 				if (correctKeyPressed == 1) {
-					Debug.Log ("select key");
+					goo.GetComponent<Animator>().SetTrigger("Fire");
+					shield.GetComponent<Animator>().SetTrigger("Trigger");
 					defendCount ++;
 					if (defendCount == microGame.defensePresses) {
 						SwitchModes();
@@ -104,6 +110,7 @@ public class SpaceCombatManager : GameManager {
 					}
 				}
 				else {
+					goo.GetComponent<Animator>().SetTrigger("Hit");
 					baseGame.mechanic.loseCondition.AddAmt(1f);
 				}
 			}
@@ -139,7 +146,9 @@ public class SpaceCombatManager : GameManager {
 		if (microGame.mode == CombatMode.Attack) {
 			if (key == KeyCode.Space) {
 				attacks++;
+				health--;
 				GameObject.Instantiate(goo);
+				healthBar.transform.FindChild(health.ToString()).gameObject.SetActive(false);;
 				UpdateDisplay();
 				if (attacks == 10) {
 					baseGame.mechanic.winCondition.AddAmt(attacks);
@@ -151,7 +160,6 @@ public class SpaceCombatManager : GameManager {
 			if (key == currentKey) {
 				Debug.Log ("Hit correct key!");
 				correctKeyPressed = 1;
-				shield.GetComponent<Animator>().SetTrigger("Trigger");
 			}
 			else {
 				Debug.Log ("Hit wrong key");
