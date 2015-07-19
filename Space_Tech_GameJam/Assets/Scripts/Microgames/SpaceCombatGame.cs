@@ -16,8 +16,7 @@ public class SpaceCombatGame : BaseMicrogame {
 	public SpaceCombatGame(int difficulty) :base (difficulty) {
 		Debug.Log ("Space Combat Game Setup");
 
-		int winAmt = 10 + (difficulty -1) * 5;
-		mechanic = new SpaceCombatMechanic(difficultyLevel, winAmt, 1);
+		mechanic = new SpaceCombatMechanic(difficultyLevel, 15, 1);
 		gameName = "Space Combat";
 	}
 
@@ -37,7 +36,7 @@ public class SpaceCombatGame : BaseMicrogame {
 			break;
 		case 2:
 			attackTime = 2.5f;
-			defensePresses = 6;
+			defensePresses = 5;
 			defenceDelay = 1.25f;
 			break;
 		default:

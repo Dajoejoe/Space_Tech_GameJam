@@ -11,7 +11,9 @@ public class SpaceCombatManager : GameManager {
 	public Image spaceImage;
 	public GameObject goo;
 	public GameObject shield;
+	public GameObject healthBar;
 
+	int health;
 	int defendCount;
 	float pauseTimer;
 	int attacks;
@@ -30,6 +32,7 @@ public class SpaceCombatManager : GameManager {
 		microGame.mode = CombatMode.Defend;
 		timer = 2;
 		defendCount = 0;
+		health = 15;
 
 		this.spaceImage.gameObject.SetActive(false);
 		this.keyImage.gameObject.SetActive(false);
@@ -139,7 +142,9 @@ public class SpaceCombatManager : GameManager {
 		if (microGame.mode == CombatMode.Attack) {
 			if (key == KeyCode.Space) {
 				attacks++;
+				health--;
 				GameObject.Instantiate(goo);
+				healthBar.transform.FindChild(health.ToString()).gameObject.SetActive(false);;
 				UpdateDisplay();
 				if (attacks == 10) {
 					baseGame.mechanic.winCondition.AddAmt(attacks);
