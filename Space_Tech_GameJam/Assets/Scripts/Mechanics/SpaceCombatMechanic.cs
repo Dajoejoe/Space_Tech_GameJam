@@ -11,11 +11,4 @@ public class SpaceCombatMechanic : BaseMechanic {
 		input.ConfigureForDifficulty(difficulty);
 	}
 
-	protected override void SetupConditions (float winAmt, float loseAmt)
-	{
-		Debug.Log ("Space Game Conditions Setup");
-		winCondition = new Condition(Condition.ConditionType.LiveLoss, winAmt);
-		loseCondition = new Condition(Condition.ConditionType.LiveLoss,loseAmt);
-	}
-
 }
