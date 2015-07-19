@@ -121,7 +121,7 @@ public class SpaceCombatManager : GameManager {
 		base.Win ();
 		timer -= Time.deltaTime;
 		if (timer <= 0) {
-			Application.LoadLevel("Scene_Main");
+			GlobalGameManager.Advance();
 		}
 	}
 
@@ -130,7 +130,7 @@ public class SpaceCombatManager : GameManager {
 		base.Lose ();
 		timer -= Time.deltaTime;
 		if (timer <= 0) {
-			Application.LoadLevel("Scene_Main");
+			GlobalGameManager.Advance();
 		}
 	}
 
@@ -188,12 +188,13 @@ public class SpaceCombatManager : GameManager {
 		if (microGame.mechanic.isWinCondition(condition)) {
 			Debug.Log ("Win Condition Met");
 			gameState = GameState.Win;
+			GlobalGameManager.SetResult(true,0);
 			timer = 2;
 		}
 		else if (microGame.mechanic.isLoseCondition(condition)) {
 			Debug.Log ("Lose Condition Met");
 			gameState = GameState.Lose;
-			GlobalGameManager.health += baseGame.result;
+			GlobalGameManager.SetResult(false,baseGame.result);
 			timer = 2;
 		}
 		else {

@@ -15,6 +15,7 @@ public class SpaceCombatGame : BaseMicrogame {
 
 	public SpaceCombatGame(int difficulty) :base (difficulty) {
 		Debug.Log ("Space Combat Game Setup");
+		result = -1;
 
 		mechanic = new SpaceCombatMechanic(difficultyLevel, 15, 1);
 		gameName = "Space Combat";
@@ -24,8 +25,6 @@ public class SpaceCombatGame : BaseMicrogame {
 		Debug.Log ("Space Game Difficulty Setup");
 
 		difficultyLevel = difficulty;
-
-		result = -1;
 
 		switch (difficultyLevel)
 		{
