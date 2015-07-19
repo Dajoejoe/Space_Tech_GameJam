@@ -9,11 +9,5 @@ public class CryoMechanic : BaseMechanic {
 		input = new CryoInput();
 		input.ConfigureForDifficulty(difficulty);
 	}
-	
-	protected override void SetupConditions (float winAmt, float loseAmt)
-	{
-		Debug.Log ("Cryo Conditions Setup");
-		winCondition = new Condition(Condition.ConditionType.Time, winAmt);
-		loseCondition = new Condition(Condition.ConditionType.LiveLoss,loseAmt);
-	}
+
 }

@@ -70,11 +70,19 @@ public class CryoManager : GameManager {
 	protected override void Win ()
 	{
 		base.Win ();
+		timer -= Time.deltaTime;
+		if (timer <= 0) {
+			Application.LoadLevel("Scene_Main");
+		}
 	}
 	
 	protected override void Lose ()
 	{
 		base.Lose ();
+		timer -= Time.deltaTime;
+		if (timer <= 0) {
+			Application.LoadLevel("Scene_Main");
+		}
 	}
 	
 	public override void ProcessInput (KeyCode key)
@@ -99,11 +107,13 @@ public class CryoManager : GameManager {
 		if (microGame.mechanic.isWinCondition(condition)) {
 			Debug.Log ("Win Condition Met");
 			gameState = GameState.Win;
+			timer = 2;
 		}
 		else if (microGame.mechanic.isLoseCondition(condition)) {
 			Debug.Log ("Lose Condition Met");
 			gameState = GameState.Lose;
 			GlobalGameManager.health += baseGame.result;
+			timer = 2;
 		}
 		else {
 			throw new UnityException("Error with game condition: Condition met is neither the win or the lose condition");

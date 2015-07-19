@@ -17,8 +17,13 @@ public abstract class BaseMechanic  {
 	public BaseMechanic(float winAmt, float loseAmt) {
 		SetupConditions(winAmt,loseAmt);
 	}
-
-	protected abstract void SetupConditions(float winAmt, float loseAmt);
+	
+	protected virtual void SetupConditions (float winAmt, float loseAmt)
+	{
+		Debug.Log ("Conditions Setup");
+		winCondition = new Condition(Condition.ConditionType.Time, winAmt);
+		loseCondition = new Condition(Condition.ConditionType.LiveLoss,loseAmt);
+	}
 
 	public bool isWinCondition(Condition condition) { return condition.Equals(winCondition); }
 	public bool isLoseCondition(Condition condition) { return condition.Equals(loseCondition); }
