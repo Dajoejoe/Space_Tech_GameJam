@@ -46,7 +46,6 @@ public class SpaceCombatGame : BaseMicrogame {
 			break;
 		default:
 			break;
+		}
 	}
-
-
 }
