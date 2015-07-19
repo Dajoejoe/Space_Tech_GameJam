@@ -27,6 +27,7 @@ public class SpaceCombatInput : BaseInput {
 			keys.Add(KeyCode.A);
 			keys.Add(KeyCode.W);
 			keys.Add(KeyCode.D);
+			keys.Add(KeyCode.S);
 			break;
 		}
 		keys.Add(KeyCode.Space);

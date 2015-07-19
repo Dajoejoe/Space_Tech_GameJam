@@ -10,6 +10,7 @@ public class SpaceTravelManager : GameManager {
 	protected override void Start () {
 		base.Start();
 
+		player.gameManager = this;
 	}
 	
 	// Update is called once per frame
@@ -98,5 +99,12 @@ public class SpaceTravelManager : GameManager {
 
 	#region Class Specific
 
+	public void ReachedEnd() {
+		baseGame.mechanic.winCondition.AddAmt(1);
+	}
+
+	public void Crashed() {
+		baseGame.mechanic.loseCondition.AddAmt(1);
+	}
 	#endregion
 }

@@ -65,9 +65,12 @@
      <Compile Include="Assets\Scripts\Microgames\MicrogameObject.cs" />
      <Compile Include="Assets\Scripts\Microgames\SpaceCombatGame.cs" />
      <Compile Include="Assets\Scripts\Microgames\SpaceTravelGame.cs" />
+     <Compile Include="Assets\Scripts\Objects\CameraMove.cs" />
      <Compile Include="Assets\Scripts\Objects\CryoContainer.cs" />
      <Compile Include="Assets\Scripts\Objects\Goo.cs" />
      <Compile Include="Assets\Scripts\Objects\ShipPlayer.cs" />
+     <Compile Include="Assets\Scripts\Objects\Spawner.cs" />
+     <Compile Include="Assets\Scripts\RotateAround.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity512/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

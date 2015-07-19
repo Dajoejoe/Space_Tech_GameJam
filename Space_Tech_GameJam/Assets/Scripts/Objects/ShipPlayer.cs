@@ -2,7 +2,10 @@
 using System.Collections;
 
 public class ShipPlayer : MonoBehaviour {
-	
+
+	public SpaceTravelManager gameManager;
+	CameraMove camera;
+
 	public float acceleration;
 	public float deceleration;
 	public float maxSpeed;
@@ -10,8 +13,16 @@ public class ShipPlayer : MonoBehaviour {
 	Vector3 direction;
 	Vector3 velocity;
 
-	Rect bounds;
+	float minY = -2.9f;
+	float maxY = 2.1f;
 	Transform _transform;
+	
+	public GameObject shield;
+	public GameObject shieldUI;
+	bool shieldUp;
+	float shieldTime;
+	int shieldEnergy;
+
 	// Use this for initialization
 	void Start () {
 		_transform = transform;
@@ -20,11 +31,20 @@ public class ShipPlayer : MonoBehaviour {
 //		maxSpeed = 1;
 		direction = Vector3.zero;
 		velocity = Vector3.zero; 
+		shieldEnergy = 3;
+		camera = transform.parent.GetComponent<CameraMove>();
+		camera.move = true;
 	}
 	
 	// Update is called once per frame
 	void Update () {		
 		direction = Vector3.zero;
+
+		if (shieldUp) {
+			shieldTime -= Time.deltaTime;
+			if (shieldTime <= 0)
+				Changeshield(false);
+		}
 
 		GetInput();
 		UpdateMovement();
@@ -38,7 +58,17 @@ public class ShipPlayer : MonoBehaviour {
 			velocity += direction * acceleration;
 		}
 
-		_transform.localPosition += velocity;
+		Vector3 pos = _transform.localPosition;
+		pos += velocity;
+		if (pos.y < minY) {
+			pos.y = minY;
+			velocity = Vector3.zero;
+		}
+		if (pos.y > maxY) {
+			pos.y = maxY;
+			velocity = Vector3.zero;
+		}
+		_transform.localPosition = pos;
 	}
 
 	public void ProcessInput(KeyCode key) {
@@ -54,6 +84,12 @@ public class ShipPlayer : MonoBehaviour {
 		newDirection.Normalize();
 		direction = newDirection;
 
+		if (key == KeyCode.Space && shieldEnergy > 0) {
+			Changeshield(true);
+			shieldTime = 1;
+			shieldEnergy --;
+			shieldUI.transform.FindChild(shieldEnergy.ToString()).gameObject.SetActive(false);
+		}
 	}
 
 	void GetInput() {
@@ -68,6 +104,29 @@ public class ShipPlayer : MonoBehaviour {
 		}
 		if (Input.GetKey(KeyCode.W)) {
 			ProcessInput(KeyCode.W);
+		}
+	}
+
+	void Changeshield(bool on) {
+		shield.SetActive(on);
+		shieldUp = on;
+	}
+
+	void OnTriggerEnter2D(Collider2D collider) {
+		if (collider.tag == "End") {
+			gameManager.ReachedEnd();
+			camera.move = false;
+		}
+		else if (collider.tag == "LargeAstroid") {
+			gameManager.Crashed();
+		}
+		else if (collider.tag == "SmallAsteroid") {
+			if (shieldUp) {
+				Destroy(collider.gameObject);
+			}
+			else {
+				gameManager.Crashed();
+			}
 		}
 	}
 }
