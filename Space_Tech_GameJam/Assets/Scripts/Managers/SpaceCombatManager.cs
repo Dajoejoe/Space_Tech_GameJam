@@ -188,12 +188,13 @@ public class SpaceCombatManager : GameManager {
 		if (microGame.mechanic.isWinCondition(condition)) {
 			Debug.Log ("Win Condition Met");
 			gameState = GameState.Win;
+			GlobalGameManager.SetResult(true,0);
 			timer = 2;
 		}
 		else if (microGame.mechanic.isLoseCondition(condition)) {
 			Debug.Log ("Lose Condition Met");
 			gameState = GameState.Lose;
-			GlobalGameManager.health += baseGame.result;
+			GlobalGameManager.SetResult(true,baseGame.result);
 			timer = 2;
 		}
 		else {

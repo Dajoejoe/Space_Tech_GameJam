@@ -24,7 +24,6 @@ public class CryoContainer : MonoBehaviour {
 	void Start () {
 		_transform = transform.FindChild("Cryo_Goo");
 		alert = transform.FindChild("Cryo_AlertEffect").GetComponent<SpriteRenderer>();
-		Debug.Log (alert);
 
 		startingSize = 1.25f;
 		fillAmt = startingSize * 2f;
