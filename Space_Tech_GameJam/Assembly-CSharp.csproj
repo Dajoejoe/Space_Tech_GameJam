@@ -65,6 +65,7 @@
      <Compile Include="Assets\Scripts\Microgames\MicrogameObject.cs" />
      <Compile Include="Assets\Scripts\Microgames\SpaceCombatGame.cs" />
      <Compile Include="Assets\Scripts\Microgames\SpaceTravelGame.cs" />
+     <Compile Include="Assets\Scripts\Objects\Blackhole.cs" />
      <Compile Include="Assets\Scripts\Objects\CameraMove.cs" />
      <Compile Include="Assets\Scripts\Objects\CryoContainer.cs" />
      <Compile Include="Assets\Scripts\Objects\Goo.cs" />

@@ -9,7 +9,6 @@ public class Spawner : MonoBehaviour {
 	void Awake() {
 		CircleCollider2D colider = GetComponent<CircleCollider2D>();
 		Bounds bounds = colider.bounds;
-		Debug.Log (bounds.min.x + " " + bounds.max.x);
 		for (int i=0; i < count; i++) {
 			GameObject newObject = (GameObject)GameObject.Instantiate(objectToSpawn);
 			float x = Random.Range(bounds.min.x, bounds.max.x);

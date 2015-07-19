@@ -41,12 +41,13 @@ public class GlobalGameManager : MonoBehaviour {
 	// Use this for initialization
 	// This is temporary until we click to start
 	void Start () {
-		string scene = "Scene_" + nextGame.ToString();
-		Application.LoadLevel(scene);
+		healthBar.SetActive(false);
 	}
 
 	public void Reset() {
 		Debug.Log ("Reset");
+		transform.parent = null;
+
 		globalDifficulty = 1;
 		health = 3;
 		levelsCompleted = 0;
@@ -63,8 +64,13 @@ public class GlobalGameManager : MonoBehaviour {
 
 	// Auto load the next level
 	void OnLevelWasLoaded(int level) {
+
 		if (level != 0 || health <= 0 || loaded)
+		{		
+			healthBar.SetActive(true);
 			return;
+		}
+		healthBar.SetActive(false);
 
 		loaded = true;
 		if (!replay)
@@ -95,8 +101,14 @@ public class GlobalGameManager : MonoBehaviour {
 				Application.Quit();
 			}
 		}
+		else if (Application.loadedLevel == 0 && Input.GetKeyDown(KeyCode.Space)) {
+			string scene = "Scene_" + nextGame.ToString();
+
+			Application.LoadLevel(scene);
+		}
 
 		if (advance) {
+			transform.parent = null;
 			advance = false;
 			if (health <= 0) {
 				SetGameOver();
@@ -110,9 +122,9 @@ public class GlobalGameManager : MonoBehaviour {
 
 	void AddGameTypes () {
 		gameTypes = new List<Type>();
-		gameTypes.Add(typeof(CryoGame));
 		gameTypes.Add(typeof(SpaceCombatGame));
 		gameTypes.Add(typeof(SpaceTravelGame));
+		gameTypes.Add(typeof(CryoGame));
 	}
 
 	public static void SetResult(bool won, int result) {

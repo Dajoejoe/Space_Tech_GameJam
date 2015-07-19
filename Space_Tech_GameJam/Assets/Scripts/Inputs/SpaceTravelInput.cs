@@ -12,9 +12,7 @@ public class SpaceTravelInput : BaseInput {
 		List<KeyCode> keys = new List<KeyCode>();
 		
 		keys.Add(KeyCode.W);
-		keys.Add(KeyCode.A);
 		keys.Add(KeyCode.S);
-		keys.Add(KeyCode.D);
 		keys.Add(KeyCode.Space);
 		
 		this.acceptedKeys = keys;
@@ -22,5 +20,5 @@ public class SpaceTravelInput : BaseInput {
 	
 	protected override void HandleKeyDown(KeyCode key){ if (processDelegate != null) processDelegate(key);}
 	protected override void HandleKeyUp(KeyCode key){}
-	protected override void HandleKey(KeyCode key){ if (processDelegate != null) processDelegate(key);}
+	protected override void HandleKey(KeyCode key){if (processDelegate != null) processDelegate(key);}
 }

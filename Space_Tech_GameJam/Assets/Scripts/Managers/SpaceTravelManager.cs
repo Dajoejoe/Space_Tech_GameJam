@@ -9,7 +9,13 @@ public class SpaceTravelManager : GameManager {
 
 	protected override void Start () {
 		base.Start();
+		microGame = (SpaceTravelGame)baseGame;
+		microGame.mechanic.winCondition.metDelegate += new ConditionMet(ConditionMet);
+		microGame.mechanic.loseCondition.metDelegate += new ConditionMet(ConditionMet);
 
+		if (player == null) {
+			player = GameObject.FindGameObjectWithTag("Player").GetComponent<ShipPlayer>();
+		}
 		player.gameManager = this;
 	}
 	
@@ -65,7 +71,6 @@ public class SpaceTravelManager : GameManager {
 		if (gameState != GameState.Play) {
 			return;
 		}
-
 		player.ProcessInput(key);
 
 	}
@@ -100,11 +105,12 @@ public class SpaceTravelManager : GameManager {
 	#region Class Specific
 
 	public void ReachedEnd() {
-		baseGame.mechanic.winCondition.AddAmt(1);
+		microGame.mechanic.winCondition.AddAmt(1);
+		Debug.Log ("end");
 	}
 
 	public void Crashed() {
-		baseGame.mechanic.loseCondition.AddAmt(1);
+		microGame.mechanic.loseCondition.AddAmt(1);
 	}
 	#endregion
 }

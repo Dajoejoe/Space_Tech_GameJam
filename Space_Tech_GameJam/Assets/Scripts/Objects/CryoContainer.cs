@@ -40,6 +40,32 @@ public class CryoContainer : MonoBehaviour {
 		drain = false;
 		state = 0;
 	}
+
+	void ConfigureForDifficulty() {
+
+		switch (GlobalGameManager.globalDifficulty)
+		{
+		case 1:
+			fillAmt = startingSize * 2f;
+			fillRate = fillAmt * 2f;
+			
+			drainSpeed = Random.Range(startingSize / 14, startingSize / 6);
+			break;
+		case 2:
+			fillAmt = startingSize * 1.85f;
+			fillRate = fillAmt * 2f;
+			
+			drainSpeed = Random.Range(startingSize / 13, startingSize / 5);
+			break;
+		case 3:
+			fillAmt = startingSize * 1.65f;
+			fillRate = fillAmt * 2f;
+			
+			drainSpeed = Random.Range(startingSize / 11, startingSize / 5);
+			break;
+		}
+
+	}
 	
 	// Update is called once per frame
 	void Update () {

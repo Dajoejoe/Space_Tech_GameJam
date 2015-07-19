@@ -38,7 +38,6 @@ public class ShipPlayer : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {		
-		direction = Vector3.zero;
 
 		if (shieldUp) {
 			shieldTime -= Time.deltaTime;
@@ -46,7 +45,7 @@ public class ShipPlayer : MonoBehaviour {
 				Changeshield(false);
 		}
 
-		GetInput();
+		//GetInput();
 		UpdateMovement();
 	}
 
@@ -69,6 +68,7 @@ public class ShipPlayer : MonoBehaviour {
 			velocity = Vector3.zero;
 		}
 		_transform.localPosition = pos;
+		direction = Vector3.zero;
 	}
 
 	public void ProcessInput(KeyCode key) {
@@ -80,6 +80,7 @@ public class ShipPlayer : MonoBehaviour {
 		if (key == KeyCode.S) {
 			newDirection += Vector3.down;
 		}
+		Debug.Log (newDirection);
 
 		newDirection.Normalize();
 		direction = newDirection;
@@ -118,6 +119,7 @@ public class ShipPlayer : MonoBehaviour {
 			camera.move = false;
 		}
 		else if (collider.tag == "LargeAstroid") {
+			velocity = Vector3.zero;
 			gameManager.Crashed();
 		}
 		else if (collider.tag == "SmallAsteroid") {
@@ -125,8 +127,21 @@ public class ShipPlayer : MonoBehaviour {
 				Destroy(collider.gameObject);
 			}
 			else {
+				velocity = Vector3.zero;
 				gameManager.Crashed();
 			}
+		}
+		else if (collider.tag == "Blackhole") {
+			Debug.Log ("balckhole");
+		}
+	}
+
+	void OnTriggerStay2D(Collider2D collider) {
+		if (collider.tag == "Blackhole") {
+			float dif = collider.transform.position.y - transform.position.y;
+			float str = collider.bounds.extents.magnitude - dif;
+
+			velocity += Mathf.Sign(dif) * Vector3.up   * str * Time.deltaTime;
 		}
 	}
 }

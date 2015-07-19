@@ -13,6 +13,7 @@ public class SpaceCombatManager : GameManager {
 	public GameObject enemyGoo;
 	public GameObject shield;
 	public GameObject healthBar;
+	public AudioClip[] clips;
 
 	int health;
 	int defendCount;
@@ -100,6 +101,7 @@ public class SpaceCombatManager : GameManager {
 				if (correctKeyPressed == 1) {
 					goo.GetComponent<Animator>().SetTrigger("Fire");
 					shield.GetComponent<Animator>().SetTrigger("Trigger");
+					GetComponent<AudioSource>().PlayOneShot(clips[0]);
 					defendCount ++;
 					if (defendCount == microGame.defensePresses) {
 						SwitchModes();
@@ -143,7 +145,7 @@ public class SpaceCombatManager : GameManager {
 		}
 
 		if (microGame.mode == CombatMode.Attack) {
-			if (key == KeyCode.Space) {
+			if (key == KeyCode.Space && health > 0) {
 				attacks++;
 				health--;
 				GameObject.Instantiate(goo);
