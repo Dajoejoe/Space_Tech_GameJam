@@ -9,6 +9,8 @@ public class GlobalGameManager : MonoBehaviour {
 
 	public GameObject healthBar;
 	public GameObject gameOverScreen;
+	public GameObject winScreen;
+
 
 	public static Type nextGame;
 	public static Type previousGame;
@@ -58,6 +60,7 @@ public class GlobalGameManager : MonoBehaviour {
 		}
 
 		gameOverScreen.SetActive(false);
+		winScreen.SetActive(false);
 
 		SetLevel ();
 	}
@@ -83,9 +86,19 @@ public class GlobalGameManager : MonoBehaviour {
 
 	// Handle setting the levels
 	void SetLevel () {
-		Debug.Log ("level " + level);
+		Debug.Log ("level " + level);		
+		if (level == 0)
+		{
+			globalDifficulty ++;
+		}
+		if (globalDifficulty == 4)
+		{
+			SetWin();
+			return;
+		}
 		nextGame = gameTypes[level];
 		level = (level + 1) % gameTypes.Count;
+
 	}
 
 	// Update is called once per frame
@@ -156,4 +169,10 @@ public class GlobalGameManager : MonoBehaviour {
 		gameOverScreen.SetActive(true);
 		gameOverScreen.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = Resources.LoadAll<Sprite>("Sprites/UI/Text_NumbersSheet")[levelsCompleted];
 	}
+
+	void SetWin() {
+		winScreen.SetActive(true);
+
+	}
+
 }
