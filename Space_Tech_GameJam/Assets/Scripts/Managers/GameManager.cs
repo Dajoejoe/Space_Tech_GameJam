@@ -29,6 +29,9 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	protected virtual void Update () {
+		
+		if (CallLevelLoad.load)
+			return;
 		baseGame.mechanic.GetInput.Update();
 
 		if (gameState == GameState.Intro) {

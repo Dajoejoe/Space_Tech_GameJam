@@ -83,6 +83,9 @@ public class SpaceTravelManager : GameManager {
 	
 	protected override void ConditionMet (Condition condition)
 	{
+		if (gameState != GameState.Play)
+			return;
+
 		if (microGame.mechanic.isWinCondition(condition)) {
 			Debug.Log ("Win Condition Met");
 			gameState = GameState.Win;

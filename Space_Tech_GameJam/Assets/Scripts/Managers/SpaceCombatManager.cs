@@ -61,6 +61,9 @@ public class SpaceCombatManager : GameManager {
 	
 	// Update is called once per frame
 	protected override void Update () {
+		if (CallLevelLoad.load)
+			return;
+
 		base.Update();
 	}
 	
@@ -187,6 +190,9 @@ public class SpaceCombatManager : GameManager {
 	
 	protected override void ConditionMet (Condition condition)
 	{
+		keyImage.gameObject.SetActive(false);
+		spaceImage.gameObject.SetActive(false);
+
 		if (microGame.mechanic.isWinCondition(condition)) {
 			Debug.Log ("Win Condition Met");
 			gameState = GameState.Win;

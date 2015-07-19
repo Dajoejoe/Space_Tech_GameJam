@@ -25,6 +25,7 @@ public class GlobalGameManager : MonoBehaviour {
 	static bool replay;
 	static bool advance;
 	static bool loaded;
+	static bool started;
 
 	void Awake () {
 
@@ -54,6 +55,7 @@ public class GlobalGameManager : MonoBehaviour {
 		health = 3;
 		levelsCompleted = 0;
 		level = 0;
+		started = false;
 
 		foreach (Transform bar in healthBar.transform) {
 			bar.gameObject.SetActive(true);
@@ -61,12 +63,12 @@ public class GlobalGameManager : MonoBehaviour {
 
 		gameOverScreen.SetActive(false);
 		winScreen.SetActive(false);
-
-		SetLevel ();
 	}
 
 	// Auto load the next level
 	void OnLevelWasLoaded(int level) {
+		if (!started)
+			return;
 
 		if (level > 1  || health <= 0 || loaded)
 		{		
@@ -78,10 +80,6 @@ public class GlobalGameManager : MonoBehaviour {
 		healthBar.SetActive(false);
 
 		loaded = true;
-		if (!replay)
-			SetLevel();
-		string scene = "Scene_" + nextGame.ToString();
-		Application.LoadLevel(scene);
 	}
 
 	// Handle setting the levels
@@ -110,17 +108,11 @@ public class GlobalGameManager : MonoBehaviour {
 		if (health <= 0) {
 			if (Input.GetKeyDown(KeyCode.Space)) {
 				Reset ();
-				Application.LoadLevel("Scene_Main");
+				StartGame();
 			}
 			else if (Input.GetKeyDown(KeyCode.Escape)) {
 				Application.Quit();
 			}
-		}
-		else if (Application.loadedLevel == 0 && Input.GetKeyDown(KeyCode.Space)) {
-			string scene = "Scene_" + nextGame.ToString();
-			CallLevelLoad.SetLevelLoad(scene,.5f,true,false);
-
-//			Application.LoadLevel(scene);
 		}
 
 		if (advance) {
@@ -133,16 +125,25 @@ public class GlobalGameManager : MonoBehaviour {
 			else {
 				loaded = false;
 				//Application.LoadLevel("Scene_Main");
-				CallLevelLoad.SetLevelLoad("Scene_Main",.5f,true,false);
+				
+				if (!replay)
+					SetLevel();
+				string scene = "Scene_" + nextGame.ToString();
+				CallLevelLoad.SetLevelLoad(scene,.5f,true,false);
 			}
 		}
 	}
 
 	void AddGameTypes () {
 		gameTypes = new List<Type>();
-		gameTypes.Add(typeof(SpaceCombatGame));
-		gameTypes.Add(typeof(SpaceTravelGame));
 		gameTypes.Add(typeof(CryoGame));
+		gameTypes.Add(typeof(SpaceTravelGame));
+		gameTypes.Add(typeof(SpaceCombatGame));
+	}
+
+	public static void StartGame() {
+		started = true;
+		Advance();
 	}
 
 	public static void SetResult(bool won, int result) {
