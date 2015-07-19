@@ -6,6 +6,8 @@ public class CryoContainer : MonoBehaviour {
 	public CryoManager cryoManager;
 	public bool drain;
 
+	SpriteRenderer alert;
+	
 	float startingSize;
 	float drainSpeed;
 	float fillAmt;
@@ -16,18 +18,25 @@ public class CryoContainer : MonoBehaviour {
 	int state;
 
 	Transform _transform;
+
+	// -1.25
 	// Use this for initialization
 	void Start () {
-		_transform = transform;
-		startingSize = _transform.localScale.y;
-		fillAmt = startingSize * 0.5f;
-		fillRate = fillAmt * 0.5f;
+		_transform = transform.FindChild("Cryo_Goo");
+		alert = transform.FindChild("Cryo_AlertEffect").GetComponent<SpriteRenderer>();
+		Debug.Log (alert);
+
+		startingSize = 1.25f;
+		fillAmt = startingSize * 2f;
+		fillRate = fillAmt * 2f;
 
 		drainSpeed = Random.Range(startingSize / 15, startingSize / 6);
 
-		Vector3 scale = _transform.localScale;
-		scale.y -= Random.Range(0,drainSpeed);
-		_transform.localScale = scale;
+		Vector3 position = _transform.localPosition;
+		position.y -= Random.Range(0,drainSpeed);
+		_transform.localPosition = position;
+
+		alert.enabled = false;
 
 		drain = false;
 		state = 0;
@@ -37,34 +46,32 @@ public class CryoContainer : MonoBehaviour {
 	void Update () {
 		if (!drain)
 			return;
+		Vector3 position = _transform.localPosition;
+		position.y -= drainSpeed * Time.deltaTime;
+		position.y += Mathf.Min (amtToFill, fillRate) * Time.deltaTime;
+		position.y = Mathf.Clamp(position.y, -startingSize, 0);
 
-		Vector3 scale = _transform.localScale;
-		scale.y -= drainSpeed * Time.deltaTime;
-		scale.y += Mathf.Min (amtToFill, fillRate) * Time.deltaTime;
-		amtToFill = Mathf.Clamp(amtToFill-fillRate,0,amtToFill);
-		if (scale.y <= 0) {
+		amtToFill = Mathf.Clamp(amtToFill-(fillRate* Time.deltaTime),0,amtToFill);
+		if (position.y <= -startingSize) {
 			cryoManager.ContainerDrained(this);
 		}
-		_transform.localScale = scale;
+		_transform.localPosition = position;
 
-		if (state != 2 && scale.y < startingSize * 0.25f) {
-			this.gameObject.GetComponent<SpriteRenderer>().color = new Color(.25f,.25f,.25f);
+		if (state != 2 && position.y > -startingSize * 0.25f) {
+			alert.enabled = false;
 			state = 2;
 		}
-		else if (state != 1 && scale.y < startingSize * 0.5f) {
-			this.gameObject.GetComponent<SpriteRenderer>().color = new Color(.5f,.5f,.5f);
+		else if (state != 1 && position.y < -startingSize * 0.5f) {
+			alert.enabled = true;
 			state = 1;
 		}
-		else if (state != 0 && scale.y > startingSize * 0.5f) {
-			this.gameObject.GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f);
-			state = 0;
+
+		if (_transform.localPosition.y + amtToFill > startingSize) {
+			cryoManager.ContainerDrained(this);
 		}
 	}
 
 	public void Fill() {
 		amtToFill += fillAmt;
-		if (_transform.localScale.y + amtToFill > startingSize) {
-			cryoManager.ContainerDrained(this);
-		}
 	}
 }

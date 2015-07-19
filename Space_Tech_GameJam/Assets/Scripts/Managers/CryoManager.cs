@@ -28,8 +28,7 @@ public class CryoManager : GameManager {
 				cont.cryoManager = this;
 			}
 		}
-		Debug.Log (containers.Count);
-		
+
 //		string path = "";
 //		foreach (KeyCode key in this.keys) {
 //			path = "Sprites/UI/Icon_"+key.ToString();
@@ -131,7 +130,6 @@ public class CryoManager : GameManager {
 
 	public void ContainerDrained(CryoContainer container) {
 		microGame.mechanic.loseCondition.AddAmt(1);
-		container.GetComponent<SpriteRenderer>().color = Color.black;
 		ChangeContainers(false);
 	}
 

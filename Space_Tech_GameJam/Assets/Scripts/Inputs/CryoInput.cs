@@ -14,15 +14,12 @@ public class CryoInput : BaseInput {
 		keys.Add(KeyCode.Q);
 		keys.Add(KeyCode.W);
 		keys.Add(KeyCode.E);
-		keys.Add(KeyCode.R);
 		keys.Add(KeyCode.A);
 		keys.Add(KeyCode.S);
 		keys.Add(KeyCode.D);
-		keys.Add(KeyCode.F);
 		keys.Add(KeyCode.Z);
 		keys.Add(KeyCode.X);
 		keys.Add(KeyCode.C);
-		keys.Add(KeyCode.V);
 
 		this.acceptedKeys = keys;
 	}

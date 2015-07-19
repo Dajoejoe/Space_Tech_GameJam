@@ -55,7 +55,6 @@ public class SpaceCombatManager : GameManager {
 		Sprite[] newSprites = Resources.LoadAll<Sprite>(path);
 		foreach (Sprite s in newSprites) {
 			this.numberCache.Add(s);
-			Debug.Log (s.name);
 		}
 	}
 	
