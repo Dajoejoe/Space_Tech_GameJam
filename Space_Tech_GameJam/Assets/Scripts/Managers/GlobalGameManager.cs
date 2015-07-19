@@ -68,6 +68,8 @@ public class GlobalGameManager : MonoBehaviour {
 		if (level != 0 || health <= 0 || loaded)
 		{		
 			healthBar.SetActive(true);
+			transform.parent = Camera.main.transform;
+			transform.localPosition = new Vector3(0,0,10);
 			return;
 		}
 		healthBar.SetActive(false);
@@ -103,8 +105,9 @@ public class GlobalGameManager : MonoBehaviour {
 		}
 		else if (Application.loadedLevel == 0 && Input.GetKeyDown(KeyCode.Space)) {
 			string scene = "Scene_" + nextGame.ToString();
+			CallLevelLoad.SetLevelLoad(scene,.5f,true,false);
 
-			Application.LoadLevel(scene);
+//			Application.LoadLevel(scene);
 		}
 
 		if (advance) {
@@ -116,7 +119,8 @@ public class GlobalGameManager : MonoBehaviour {
 			}
 			else {
 				loaded = false;
-				Application.LoadLevel("Scene_Main");
+				//Application.LoadLevel("Scene_Main");
+				CallLevelLoad.SetLevelLoad("Scene_Main",.5f,true,false);
 			}
 		}
 	}

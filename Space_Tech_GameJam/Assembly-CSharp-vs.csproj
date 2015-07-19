@@ -47,6 +47,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Condition\Condition.cs" />
+     <Compile Include="Assets\Scripts\Helper\CallLevelLoad.cs" />
+     <Compile Include="Assets\Scripts\Helper\FadeInOut.cs" />
+     <Compile Include="Assets\Scripts\Helper\RotateAround.cs" />
      <Compile Include="Assets\Scripts\Inputs\BaseInput.cs" />
      <Compile Include="Assets\Scripts\Inputs\CryoInput.cs" />
      <Compile Include="Assets\Scripts\Inputs\SpaceCombatInput.cs" />
@@ -71,7 +74,6 @@
      <Compile Include="Assets\Scripts\Objects\Goo.cs" />
      <Compile Include="Assets\Scripts\Objects\ShipPlayer.cs" />
      <Compile Include="Assets\Scripts\Objects\Spawner.cs" />
-     <Compile Include="Assets\Scripts\RotateAround.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity512/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

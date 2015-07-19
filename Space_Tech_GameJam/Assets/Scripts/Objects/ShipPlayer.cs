@@ -8,7 +8,6 @@ public class ShipPlayer : MonoBehaviour {
 
 	public float acceleration;
 	public float deceleration;
-	public float maxSpeed;
 	float speed;
 	Vector3 direction;
 	Vector3 velocity;
@@ -34,6 +33,7 @@ public class ShipPlayer : MonoBehaviour {
 		shieldEnergy = 3;
 		camera = transform.parent.GetComponent<CameraMove>();
 		camera.move = true;
+		ChangeShield(false);
 	}
 	
 	// Update is called once per frame
@@ -42,7 +42,7 @@ public class ShipPlayer : MonoBehaviour {
 		if (shieldUp) {
 			shieldTime -= Time.deltaTime;
 			if (shieldTime <= 0)
-				Changeshield(false);
+				ChangeShield(false);
 		}
 
 		//GetInput();
@@ -84,8 +84,8 @@ public class ShipPlayer : MonoBehaviour {
 		newDirection.Normalize();
 		direction = newDirection;
 
-		if (key == KeyCode.Space && shieldEnergy > 0) {
-			Changeshield(true);
+		if (key == KeyCode.Space && shieldEnergy > 0 && !shieldUp) {
+			ChangeShield(true);
 			shieldTime = 1;
 			shieldEnergy --;
 			shieldUI.transform.FindChild(shieldEnergy.ToString()).gameObject.SetActive(false);
@@ -107,7 +107,7 @@ public class ShipPlayer : MonoBehaviour {
 		}
 	}
 
-	void Changeshield(bool on) {
+	void ChangeShield(bool on) {
 		shield.SetActive(on);
 		shieldUp = on;
 	}
