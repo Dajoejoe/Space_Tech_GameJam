@@ -1,16 +1,15 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Objects/CameraMove.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Managers/SpaceTravelManager.cs">
     <Files>
-      <File FileName="Assets/Scripts/Objects/ShipPlayer.cs" Line="128" Column="1" />
-      <File FileName="Assets/Scripts/Managers/SpaceTravelManager.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Objects/ShipPlayer.cs" Line="53" Column="1" />
+      <File FileName="Assets/Scripts/Managers/SpaceTravelManager.cs" Line="12" Column="40" />
       <File FileName="Assets/Scripts/Mechanics/SpaceTravelMechanic.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Microgames/SpaceTravelGame.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Mechanics/BaseMechanic.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Objects/Spawner.cs" Line="12" Column="1" />
-      <File FileName="Assets/Scripts/RotateAround.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Objects/CameraMove.cs" Line="17" Column="63" />
-      <File FileName="Assets/Scripts/Inputs/SpaceCombatInput.cs" Line="30" Column="24" />
+      <File FileName="Assets/Scripts/Managers/GlobalGameManager.cs" Line="104" Column="35" />
+      <File FileName="Assets/Scripts/Managers/CryoManager.cs" Line="14" Column="34" />
+      <File FileName="Assets/Scripts/Objects/CryoContainer.cs" Line="66" Column="4" />
+      <File FileName="Assets/Scripts/Managers/SpaceCombatManager.cs" Line="148" Column="42" />
+      <File FileName="Assets/Scripts/Microgames/CryoGame.cs" Line="11" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

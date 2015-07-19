@@ -80,7 +80,6 @@ public class ShipPlayer : MonoBehaviour {
 		if (key == KeyCode.S) {
 			newDirection += Vector3.down;
 		}
-		Debug.Log (newDirection);
 
 		newDirection.Normalize();
 		direction = newDirection;
@@ -118,7 +117,7 @@ public class ShipPlayer : MonoBehaviour {
 			gameManager.ReachedEnd();
 			camera.move = false;
 		}
-		else if (collider.tag == "LargeAstroid") {
+		else if (collider.tag == "LargeAsteroid") {
 			velocity = Vector3.zero;
 			gameManager.Crashed();
 		}

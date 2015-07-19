@@ -110,6 +110,7 @@ public class GlobalGameManager : MonoBehaviour {
 		if (advance) {
 			transform.parent = null;
 			advance = false;
+
 			if (health <= 0) {
 				SetGameOver();
 			}

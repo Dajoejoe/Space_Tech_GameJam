@@ -8,7 +8,10 @@ public class CameraMove : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		GameObject.FindGameObjectWithTag("GlobalManager").transform.parent = transform;
+
+		GameObject global = GameObject.FindGameObjectWithTag("GlobalManager");
+		global.transform.parent = transform;
+		global.transform.localPosition = new Vector3(0,0,10);
 	}
 	
 	// Update is called once per frame

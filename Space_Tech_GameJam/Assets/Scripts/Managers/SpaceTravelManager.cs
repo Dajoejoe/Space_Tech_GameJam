@@ -88,12 +88,14 @@ public class SpaceTravelManager : GameManager {
 			gameState = GameState.Win;
 			GlobalGameManager.SetResult(true,0);
 			timer = 2;
+			uiScreens[0].SetActive(true);
 		}
 		else if (microGame.mechanic.isLoseCondition(condition)) {
 			Debug.Log ("Lose Condition Met");
 			gameState = GameState.Lose;
 			GlobalGameManager.SetResult(false,baseGame.result);
 			timer = 2;
+			uiScreens[1].SetActive(false);
 		}
 		else {
 			throw new UnityException("Error with game condition: Condition met is neither the win or the lose condition");
