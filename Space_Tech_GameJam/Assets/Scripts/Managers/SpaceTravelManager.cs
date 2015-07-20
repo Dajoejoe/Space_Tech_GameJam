@@ -6,6 +6,7 @@ public class SpaceTravelManager : GameManager {
 	SpaceTravelGame microGame;
 
 	public ShipPlayer player;
+	public GameObject[] difficulties;
 
 	protected override void Start () {
 		base.Start();
@@ -17,6 +18,9 @@ public class SpaceTravelManager : GameManager {
 			player = GameObject.FindGameObjectWithTag("Player").GetComponent<ShipPlayer>();
 		}
 		player.gameManager = this;
+
+		difficulties[GlobalGameManager.globalDifficulty].SetActive(true);
+
 	}
 	
 	// Update is called once per frame

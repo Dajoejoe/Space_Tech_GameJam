@@ -108,6 +108,7 @@ public class GlobalGameManager : MonoBehaviour {
 		if (health <= 0) {
 			if (Input.GetKeyDown(KeyCode.Space)) {
 				Reset ();
+				SetLevel();
 				StartGame();
 			}
 			else if (Input.GetKeyDown(KeyCode.Escape)) {
@@ -137,8 +138,8 @@ public class GlobalGameManager : MonoBehaviour {
 	void AddGameTypes () {
 		gameTypes = new List<Type>();
 		gameTypes.Add(typeof(CryoGame));
-		gameTypes.Add(typeof(SpaceTravelGame));
 		gameTypes.Add(typeof(SpaceCombatGame));
+		gameTypes.Add(typeof(SpaceTravelGame));
 	}
 
 	public static void StartGame() {

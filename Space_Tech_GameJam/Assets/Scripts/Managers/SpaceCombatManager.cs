@@ -61,8 +61,6 @@ public class SpaceCombatManager : GameManager {
 	
 	// Update is called once per frame
 	protected override void Update () {
-		if (CallLevelLoad.load)
-			return;
 
 		base.Update();
 	}

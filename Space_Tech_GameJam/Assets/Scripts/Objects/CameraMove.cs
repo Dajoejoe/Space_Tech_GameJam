@@ -4,11 +4,12 @@ using System.Collections;
 public class CameraMove : MonoBehaviour {
 
 	public bool move;
-	public int speed;
+	public float speed;
 
 	// Use this for initialization
 	void Start () {
-
+		transform.position = new Vector3(0, (GlobalGameManager.globalDifficulty -1) * -10);
+		speed = 3 + (GlobalGameManager.globalDifficulty - 1) * 1.5f;
 	}
 	
 	// Update is called once per frame

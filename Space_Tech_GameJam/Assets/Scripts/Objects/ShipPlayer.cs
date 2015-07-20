@@ -119,6 +119,7 @@ public class ShipPlayer : MonoBehaviour {
 		}
 		else if (collider.tag == "LargeAsteroid") {
 			velocity = Vector3.zero;
+			camera.move = false;
 			gameManager.Crashed();
 		}
 		else if (collider.tag == "SmallAsteroid") {
@@ -127,6 +128,7 @@ public class ShipPlayer : MonoBehaviour {
 			}
 			else {
 				velocity = Vector3.zero;
+				camera.move = false;
 				gameManager.Crashed();
 			}
 		}
