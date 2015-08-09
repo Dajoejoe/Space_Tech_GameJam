@@ -67,6 +67,8 @@ public class GlobalGameManager : MonoBehaviour {
 
 	// Auto load the next level
 	void OnLevelWasLoaded(int level) {
+		healthBar.SetActive(false);
+
 		if (!started)
 			return;
 
@@ -77,7 +79,6 @@ public class GlobalGameManager : MonoBehaviour {
 			transform.localPosition = new Vector3(0,0,10);
 			return;
 		}
-		healthBar.SetActive(false);
 
 		loaded = true;
 	}
@@ -113,7 +114,8 @@ public class GlobalGameManager : MonoBehaviour {
 				StartGame();
 			}
 			else if (Input.GetKeyDown(KeyCode.Escape)) {
-				Application.Quit();
+				Reset ();
+				CallLevelLoad.SetLevelLoad(1,.5f,true,false);
 			}
 		}
 
