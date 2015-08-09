@@ -8,7 +8,8 @@ public class CameraMove : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		transform.position = new Vector3(0, (GlobalGameManager.globalDifficulty -1) * -10);
+		Debug.Log (GlobalGameManager.globalDifficulty);
+		transform.position = new Vector3(0, (GlobalGameManager.globalDifficulty -1) * -10, -10);
 		speed = 3 + (GlobalGameManager.globalDifficulty - 1) * 1.5f;
 	}
 	

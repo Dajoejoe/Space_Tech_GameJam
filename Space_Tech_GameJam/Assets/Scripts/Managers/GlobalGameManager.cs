@@ -51,9 +51,9 @@ public class GlobalGameManager : MonoBehaviour {
 		Debug.Log ("Reset");
 		transform.parent = null;
 
-		globalDifficulty = 1;
+		globalDifficulty = 0;
 		health = 3;
-		levelsCompleted = 0;
+		levelsCompleted = -1;
 		level = 0;
 		started = false;
 
@@ -84,7 +84,8 @@ public class GlobalGameManager : MonoBehaviour {
 
 	// Handle setting the levels
 	void SetLevel () {
-		Debug.Log ("level " + level);		
+		Debug.Log ("level " + level);	
+		levelsCompleted ++;
 		if (level == 0)
 		{
 			globalDifficulty ++;

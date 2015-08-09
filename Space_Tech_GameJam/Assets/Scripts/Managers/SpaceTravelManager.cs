@@ -19,7 +19,7 @@ public class SpaceTravelManager : GameManager {
 		}
 		player.gameManager = this;
 
-		difficulties[GlobalGameManager.globalDifficulty].SetActive(true);
+		difficulties[GlobalGameManager.globalDifficulty-1].SetActive(true);
 
 	}
 	
